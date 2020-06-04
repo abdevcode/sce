@@ -1,0 +1,13 @@
+<div class="main">
+  <div class="container">
+    <h2>Els nostres productes</h2>
+    <% @products.uniq.each do |p| %>
+      <div class="product"><%= image_tag p.image%>
+        <h3> <%= p.name %> </h3>
+        <p> Descripció: <%= p.description %></p>
+        <p> Preu: <%= p.price %> €/unitat</p>
+        <p> Stock: <%= p.stock %> unitats restants</p>
+      </div>
+    <%end %>
+  </div>
+</div>
