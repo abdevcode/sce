@@ -1,0 +1,21 @@
+<header>
+<div class="wrapper">
+    <div class="Titol">
+        Compra verdura ecol·lògica
+    </div>
+    <hr style="border-color:white;">
+    <nav>
+      <%if request.path != "/admins/sign_up" || request.path != "/admins/sign_in" || request.path != "/admins/sign_out"%>
+        <a href="admins/sign_up">Registrar-se</a>
+        <a href="admins/sign_in">Autenticar-se</a>
+        <a href="admins/sign_out">Desloguejar-se</a>
+      <%end%>
+
+      <%if admin_signed_in?%>
+        <a href="admins/sign_up">Afegir Producte</a>
+        <a href="admins/sign_in">Eliminar Producte</a>
+        <a href="admins/sign_out">Modificar Producte</a>
+      <%end %>
+    </nav>
+</div>
+</header>
