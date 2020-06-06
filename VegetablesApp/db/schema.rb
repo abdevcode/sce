@@ -31,27 +31,40 @@ ActiveRecord::Schema.define(version: 2020_06_05_083921) do
   end
 
   create_table "category_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_category_products_on_category_id"
+    t.index ["product_id"], name: "index_category_products_on_product_id"
   end
 
   create_table "clients", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.string "name"
     t.string "surname"
     t.string "address"
-    t.string "email"
-    t.string "password"
     t.string "city"
     t.string "zip"
     t.string "age"
     t.string "gender"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_clients_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
 
   create_table "command_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "command_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["command_id"], name: "index_command_products_on_command_id"
+    t.index ["product_id"], name: "index_command_products_on_product_id"
   end
 
   create_table "commands", force: :cascade do |t|
@@ -60,15 +73,6 @@ ActiveRecord::Schema.define(version: 2020_06_05_083921) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["client_id"], name: "index_commands_on_client_id"
-  end
-
-  create_table "parts", force: :cascade do |t|
-    t.integer "command_id"
-    t.integer "product_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["command_id"], name: "index_parts_on_command_id"
-    t.index ["product_id"], name: "index_parts_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|

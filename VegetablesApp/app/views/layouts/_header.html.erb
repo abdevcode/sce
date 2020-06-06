@@ -5,10 +5,10 @@
     </div>
     <hr style="border-color:white;">
     <nav>
-      <%if request.path != "/admins/sign_up" || request.path != "/admins/sign_in" || request.path != "/admins/sign_out"%>
-        <a href="admins/sign_up">Registrar-se</a>
-        <a href="admins/sign_in">Autenticar-se</a>
-        <a href="admins/sign_out">Desloguejar-se</a>
+      <%if request.path != "/clients/sign_up" || request.path != "/clients/sign_in" || request.path != "/clients/sign_out"%>
+        <a href="clients/sign_up">Registrar-ser</a>
+        <a href="clients/sign_in">Autenticar-se </a>
+        <a href="clients/sign_out">Desloguejar-se</a>
       <%end%>
 
       <%if admin_signed_in?%>
