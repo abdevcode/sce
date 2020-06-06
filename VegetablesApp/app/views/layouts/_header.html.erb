@@ -6,15 +6,13 @@
     <hr style="border-color:white;">
     <nav>
       <%if request.path != "/clients/sign_up" || request.path != "/clients/sign_in" || request.path != "/clients/sign_out"%>
-        <a href="clients/sign_up">Registrar-ser</a>
-        <a href="clients/sign_in">Autenticar-se </a>
-        <a href="clients/sign_out">Desloguejar-se</a>
+        <a href="/clients/sign_up">Registrar-ser</a>
+        <a href="/clients/sign_in">Autenticar-se </a>
+        <a href="/clients/sign_out">Desloguejar-se</a>
       <%end%>
 
       <%if admin_signed_in?%>
-        <a href="admins/sign_up">Afegir Producte</a>
-        <a href="admins/sign_in">Eliminar Producte</a>
-        <a href="admins/sign_out">Modificar Producte</a>
+        <a href="/products/new">Afegir Producte</a>
       <%end %>
     </nav>
 </div>

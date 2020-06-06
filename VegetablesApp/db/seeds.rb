@@ -60,3 +60,7 @@ product22 = Product.create(name: 'Maduixa', description: 'Fruita dolça ideal pe
 [category1, category4, category8] << product20.categories
 [category1, category4, category6] << product21.categories
 [category1, category4, category6] << product22.categories
+
+admin = Admin.create(:email => "admin@gmail.com",
+                     :password => "administrator",
+                     :password_confirmation => "administrator")

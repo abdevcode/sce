@@ -1,0 +1,17 @@
+<div class="main product-show">
+  <div class="product">
+      <div class="info">
+        <%= image_tag @product.image%>
+        <h3 class="product-title"> <%= @product.name %> </h3>
+        <p> Descripció: <%= @product.description %></p>
+        <p> Preu: <%= @product.price %> €/unitat</p>
+        <p> Stock: <%= @product.stock %> unitats restants</p>
+        <p>Categories</p>
+        <% @categories.each do |c| %>
+          <div class="category">
+            <p class="category-name"> <%= c.name%> </p>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>
