@@ -1,0 +1,12 @@
+//= require jquery-3.3.1.min
+//= require jquery.nice-select.min
+//= require jquery-ui.min
+//= require jquery.slicknav
+//= require mixitup.min
+//= require owl.carousel.min
+//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require_tree .
+//= require bootstrap.bundle.min
+//= require main
