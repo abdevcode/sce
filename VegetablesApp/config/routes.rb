@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index'
+  get '/search' => 'products#search', :as => 'search_page'
   get '/products', to: 'products#index'
   get '/products/new', to: 'products#new'
   get '/products/:id', to: 'products#show', as: 'product'

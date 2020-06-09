@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :force_json, only: :autocomplete
   def index
     session[:products] ||= []
 
@@ -78,9 +79,21 @@ class ProductsController < ApplicationController
     @categories = @product.categories
   end
 
+  def autocomplete
+    @products = Product.ransack(name_cont: params[:search]).result(distinct: true).limit(5)
+  end
+
+  def search
+    @products = Product.ransack(name_cont: params[:search]).result(distinct: true).limit(5)
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :image, :stock, :description, :price, category_ids: [])
-    end
+  end
+
+  def force_json
+    request.format = :json
+  end
 end
 
