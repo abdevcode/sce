@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     if admin_signed_in?
       '/'
     else
-      '/clients'
+      '/products'
     end
   end
 end

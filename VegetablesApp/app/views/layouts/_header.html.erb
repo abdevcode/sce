@@ -42,7 +42,7 @@
       <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
       <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
     </ul>
-    <div class="header__cart__price">item: <span>$150.00</span></div>
+    <div class="header__cart__price">item: </div>
   </div>
   <div class="humberger__menu__widget">
     <div class="header__top__right__language">
@@ -55,23 +55,26 @@
       </ul>
     </div>
     <div class="header__top__right__auth">
-      <a href="#"><i class="fa fa-user"></i> Login</a>
+      <a href="/clients/sign_in"><i class="fa fa-user"></i> Login</a>
     </div>
   </div>
   <nav class="humberger__menu__nav mobile-menu">
     <ul>
-      <li class="active"><a href="./index.html">Home</a></li>
-      <li><a href="./shop-grid.html">Shop</a></li>
-      <li><a href="#">Pages</a>
-        <ul class="header__menu__dropdown">
-          <li><a href="./shop-details.html">Shop Details</a></li>
-          <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-          <li><a href="./checkout.html">Check Out</a></li>
-          <li><a href="./blog-details.html">Blog Details</a></li>
-        </ul>
-      </li>
-      <li><a href="./blog.html">Blog</a></li>
-      <li><a href="./contact.html">Contact</a></li>
+      <li class="active"><a href="/">Home</a></li>
+      <%if admin_signed_in? %>
+        <li><a href="/products">Eliminar, modificar o afegir productes</a></li>
+        <li><a href="/categories">Eliminar, modificar o afegir categories</a></li>
+        <li><%= link_to "Sign out", destroy_admin_session_path, :method => :delete %></li>
+      <%else%>
+        <%if client_signed_in? %>
+          <li><%= link_to 'Veure perfil', '/clients'%></li>
+          <li><%= link_to 'Modificar perfil',edit_client_path(@client)%></li>
+          <li><%= link_to 'Historial de comandas', '/products/'%></li>
+          <li><%= link_to "Sign out", destroy_client_session_path, :method => :delete %></li>
+        <%else%>
+          <li><a href="/clients/new">Registrar-se</a></li>
+        <%end%>
+      <%end %>
     </ul>
   </nav>
   <div id="mobile-menu-wrap"></div>
@@ -98,8 +101,8 @@
         <div class="col-lg-6 col-md-6">
           <div class="header__top__left">
             <ul>
-              <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-              <li>Free Shipping for all Order of $99</li>
+              <li><i class="fa fa-envelope"></i> vegetables_riudoms@ecofriendly.com</li>
+              <li>Comprans verdura a bon preu i ecologica</li>
             </ul>
           </div>
         </div>
@@ -121,7 +124,15 @@
               </ul>
             </div>
             <div class="header__top__right__auth">
-              <a href="#"><i class="fa fa-user"></i> Login</a>
+              <%if admin_signed_in? %>
+                <%= link_to "Sign out", destroy_admin_session_path, :method => :delete %>
+              <%else %>
+                <%if client_signed_in? %>
+                  <%= link_to "Sign out", destroy_client_session_path, :method => :delete %>
+                <%else %>
+                  <a href="/clients/sign_in"><i class="fa fa-user"></i> Login</a>
+                <%end %>
+              <%end %>
             </div>
           </div>
         </div>
@@ -132,34 +143,32 @@
     <div class="row">
       <div class="col-lg-3">
         <div class="header__logo">
-          <a href="./index.html"><img src="/assets/logo.png" alt=""></a>
+          <a href="/"><img src="/assets/logo.png" alt=""></a>
         </div>
       </div>
       <div class="col-lg-6">
         <nav class="header__menu">
           <ul>
-            <li class="active"><a href="./index.html">Home</a></li>
-            <li><a href="./shop-grid.html">Shop</a></li>
-            <li><a href="#">Pages</a>
-              <ul class="header__menu__dropdown">
-                <li><a href="./shop-details.html">Shop Details</a></li>
-                <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                <li><a href="./checkout.html">Check Out</a></li>
-                <li><a href="./blog-details.html">Blog Details</a></li>
-              </ul>
-            </li>
-            <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li class="active"><a href="/">Home</a></li>
+            <%if admin_signed_in? %>
+              <li><a href="/products">Eliminar, modificar o afegir productes</a></li>
+              <li><a href="/categories">Eliminar, modificar o afegir categories</a></li>
+            <%else%>
+              <li><a href="/products">Productes</a></li>
+              <%if client_signed_in? %>
+                <li><%= link_to 'Veure perfil', '/clients'%></li>
+                <li><%= link_to 'Modificar perfil',edit_client_path(@client)%></li>
+                <li><%= link_to 'Historial de comandas', '/products/'%></li>
+              <%else%>
+                <li><a href="/clients/new">Registrar-se</a></li>
+              <%end%>
+            <%end %>
           </ul>
         </nav>
       </div>
       <div class="col-lg-3">
         <div class="header__cart">
-          <ul>
-            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-          </ul>
-          <div class="header__cart__price">item: <span>$150.00</span></div>
+          <div class="header__cart__price">item: <span></span></div>
         </div>
       </div>
     </div>

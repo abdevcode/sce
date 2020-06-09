@@ -158,9 +158,12 @@
         <div class="featured__item">
           <div class="featured__item__pic set-bg" data-setbg="<%=  p.image %>">
             <ul class="featured__item__pic__hover">
-              <li><a href="#"><i class="fa fa-heart"></i></a></li>
-              <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-
+                <%if admin_signed_in? %>
+                <li><%= link_to 'Modificar producte', '/products/'+p.id.to_s+'/edit'%><i class="fa fa-shopping-cart"></i>
+              <% end %> </li>
+                <li><%= link_to 'Eliminar producte', product_path(p) , method: :delete, data: { confirm: "Are you sure?" }%><i class="fa fa-shopping-cart"></i>
+      <% end %> </li>
+                <% end %>
               <!-- Ponemos la llamada POST del producto a la lista de la compra -->
               <!-- <li><a href=><i class="fa fa-shopping-cart"></i></a></li> -->
               <li> <%= link_to({:controller => "cart", :action => :addprod, :item => p.id }, {:method => :post}) do %>
