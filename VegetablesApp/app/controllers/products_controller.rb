@@ -1,15 +1,21 @@
 class ProductsController < ApplicationController
   def index
+    session[:products] ||= []
+
     @products = Product.all
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @products = @products.uniq{ |product| [product.name] }
   end
 
   def edit
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @product = Product.find(params[:id])
     @categories = Category.all
@@ -17,7 +23,9 @@ class ProductsController < ApplicationController
 
   def delete
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @product = Product.find(params[:id])
     @product.destroy
@@ -25,7 +33,9 @@ class ProductsController < ApplicationController
 
   def new
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @product = Product.new
     @categories = Category.all
@@ -46,7 +56,9 @@ class ProductsController < ApplicationController
 
   def create
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @product = Product.new(product_params)
     if @product.save
@@ -58,7 +70,9 @@ class ProductsController < ApplicationController
 
   def show
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @product = Product.find(params[:id])
     @categories = @product.categories

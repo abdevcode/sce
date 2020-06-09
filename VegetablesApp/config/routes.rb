@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index'
   get '/products', to: 'products#index'
+
   get '/products/new', to: 'products#new'
   get '/products/:id', to: 'products#show', as: 'product'
   post '/products', to: 'products#create'
@@ -30,4 +31,8 @@ Rails.application.routes.draw do
   put '/categories/:id/', to: 'categories#update'
   patch '/categories/:id/', to: 'categories#update'
   delete '/categories/:id/', to: 'categories#delete'
+
+  get '/showcart', to: 'cart#showcart'
+  post '/addprod', to: 'cart#addprod'
+
 end

@@ -2,7 +2,9 @@ class CategoriesController < ApplicationController
 
   def index
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @categories = Category.all
     @categories = @categories.uniq{ |product| [product.name] }
@@ -10,7 +12,9 @@ class CategoriesController < ApplicationController
 
   def edit
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @category = Category.find(params[:id])
     @products = Product.all
@@ -18,7 +22,9 @@ class CategoriesController < ApplicationController
 
   def delete
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @category = Category.find(params[:id])
     @category.destroy
@@ -26,7 +32,9 @@ class CategoriesController < ApplicationController
 
   def new
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @category = Category.new
     @products = Product.all
@@ -35,7 +43,9 @@ class CategoriesController < ApplicationController
 
   def update
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @category = Category.find params[:id]
     if @category.update_attributes(category_params)
@@ -47,7 +57,9 @@ class CategoriesController < ApplicationController
 
   def create
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @category = Category.new(category_params)
     if @category.save
@@ -59,7 +71,9 @@ class CategoriesController < ApplicationController
 
   def show
     if !admin_signed_in?
-      @client ||= Client.find_by(id: current_client.id)
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
     @category = Category.find(params[:id])
     @products = @category.products

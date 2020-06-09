@@ -75,6 +75,15 @@ ActiveRecord::Schema.define(version: 2020_06_05_083921) do
     t.index ["client_id"], name: "index_commands_on_client_id"
   end
 
+  create_table "parts", force: :cascade do |t|
+    t.integer "command_id"
+    t.integer "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["command_id"], name: "index_parts_on_command_id"
+    t.index ["product_id"], name: "index_parts_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"
