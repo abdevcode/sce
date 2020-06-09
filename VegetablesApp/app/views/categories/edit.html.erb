@@ -1,0 +1,16 @@
+<div class="category"style="margin-left:20px; margin-top:20px;">
+  <%= form_for(@category, method: "put") do |f| %>
+    <div class="field">
+      <p> <%= f.label :name %></p>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label 'products' %>
+      <br />
+      <%= f.collection_select :product_ids, @products, :id, :name, {:prompt => true}, {:multiple => true} %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  <% end %>
+</div>

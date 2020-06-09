@@ -1,0 +1,20 @@
+<div class="main">
+  <div class="container">
+    <hr style="border-color:white;">
+    <nav>
+      <%if admin_signed_in?%>
+        <a href="/categories/new">Afegir Categoria</a>
+      <%end %>
+    </nav>
+    <h2>Panell de control de l'Admin</h2>
+    <% @categories.uniq.each do |p| %>
+      <div class="category">
+        <h3> <%= p.name %> </h3>
+        <%if admin_signed_in?%>
+          <%= link_to 'Modificar categoria', '/categories/'+p.id.to_s+'/edit'%>
+          <%= link_to 'Eliminar categoria', category_path(p) , method: :delete, data: { confirm: "Are you sure?" }%>
+        <%end %>
+      </div>
+    <%end %>
+  </div>
+</div>

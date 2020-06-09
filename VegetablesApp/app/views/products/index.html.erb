@@ -1,5 +1,11 @@
 <div class="main">
   <div class="container">
+    <hr style="border-color:white;">
+    <nav>
+      <%if admin_signed_in?%>
+        <a href="/products/new">Afegir Producte</a>
+      <%end %>
+    </nav>
     <h2>Els nostres productes</h2>
     <% @products.uniq.each do |p| %>
       <div class="product"><%= image_tag p.image%>
@@ -7,10 +13,11 @@
         <p> Descripció: <%= p.description %></p>
         <p> Preu: <%= p.price %> €/unitat</p>
         <p> Stock: <%= p.stock %> unitats restants</p>
-        <%= link_to 'Més informació', product_path(p) %>
         <%if admin_signed_in?%>
           <%= link_to 'Modificar producte', '/products/'+p.id.to_s+'/edit'%>
           <%= link_to 'Eliminar producte', product_path(p) , method: :delete, data: { confirm: "Are you sure?" }%>
+        <%else %>
+          <%= link_to 'Més informació', product_path(p) %>
         <%end %>
       </div>
     <%end %>

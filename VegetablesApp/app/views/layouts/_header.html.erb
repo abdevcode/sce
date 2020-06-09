@@ -5,14 +5,20 @@
     </div>
     <hr style="border-color:white;">
     <nav>
-      <%if request.path != "/clients/sign_up" || request.path != "/clients/sign_in" || request.path != "/clients/sign_out"%>
-        <a href="/clients/sign_up">Registrar-ser</a>
-        <a href="/clients/sign_in">Autenticar-se </a>
-        <a href="/clients/sign_out">Desloguejar-se</a>
-      <%end%>
-
-      <%if admin_signed_in?%>
-        <a href="/products/new">Afegir Producte</a>
+      <%if admin_signed_in? %>
+        <%= link_to 'Eliminar, modificar o afegir un producte', '/products/'%>
+        <%= link_to 'Eliminar, modificar o afegir una categoria', '/categories/'%>
+        <%= link_to "Sign out", destroy_admin_session_path, :method => :delete %>
+      <%else%>
+        <%if client_signed_in? %>
+          <%= link_to 'Veure perfil', '/clients'%>
+          <%= link_to 'Modificar perfil',edit_client_path(@client)%>
+          <%= link_to 'Historial de comandas', '/products/'%>
+          <%= link_to "Sign out", destroy_client_session_path, :method => :delete %>
+        <%else%>
+          <a href="/clients/new">Registrar-se</a>
+          <%= link_to 'Iniciar sessió', '/clients/sign_in'%>
+        <%end%>
       <%end %>
     </nav>
 </div>
