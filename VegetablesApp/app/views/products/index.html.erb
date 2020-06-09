@@ -9,7 +9,7 @@
     <hr style="border-color:white;">
 
 
-
+<!--
     <nav>
       <%if admin_signed_in?%>
         <a href="/products/new">Afegir Producte</a>
@@ -30,7 +30,7 @@
         <%end %>
       </div>
     <%end %>
-
+-->
 
     <div class="row">
       <div class="col-lg-3">
@@ -174,14 +174,15 @@
             </ul>
           </div>
           <div class="featured__item__text">
-            <h6><a href="#"><%= p.name %></a></h6>
+            <!-- <h6><a href="#">< %= p.name %></a></h6> -->
+
+            <h6><%= link_to p.name, product_path(p) %></h6>
+
             <h5><%= p.price %></h5>
           </div>
         </div>
       </div>
       <%end %>
-
-
 
 
 

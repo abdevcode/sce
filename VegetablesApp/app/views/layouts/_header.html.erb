@@ -31,7 +31,11 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
   <div class="humberger__menu__logo">
-    <a href="#"><img src="/assets/logo.png" alt=""></a>
+    <!-- <a href="#"><img src="/assets/logo.png" alt=""></a> -->
+    <%= link_to('/products') do %>
+      <img src="/assets/language.png" alt="">
+    <% end %>
+
   </div>
   <div class="humberger__menu__cart">
     <ul>
