@@ -115,6 +115,7 @@
         <div class="featured__controls">
           <ul>
             <li class="active" data-filter="*">All</li>
+            <!-- Imprimir todas las categorias de la base de datos -->
             <li data-filter=".oranges">Oranges</li>
             <li data-filter=".fresh-meat">Fresh Meat</li>
             <li data-filter=".vegetables">Vegetables</li>
@@ -125,6 +126,7 @@
     </div>
     <div class="row featured__filter">
 
+      <!-- Imprimir todos los productos de la Base de Datos-->
       <% @products.uniq.each do |p| %>
       <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
         <div class="featured__item">
@@ -132,7 +134,17 @@
             <ul class="featured__item__pic__hover">
               <li><a href="#"><i class="fa fa-heart"></i></a></li>
               <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-              <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+
+              <!-- Ponemos la llamada POST del producto a la lista de la compra -->
+              <!-- <li><a href=><i class="fa fa-shopping-cart"></i></a></li> -->
+              <li> <%= link_to({:controller => "cart", :action => :addprod, :item => p.id }, {:method => :post}) do %>
+                <i class="fa fa-shopping-cart"></i>
+                <% end %> </li>
+
+
+
+
+
             </ul>
           </div>
           <div class="featured__item__text">
