@@ -1,35 +1,3 @@
-<script src="https://www.paypal.com/sdk/js?client-id=AfhQAyn2RmF3PXoCnNMMpenYijDrFIcAzXtSZB2hSD55El8LfREtvr6hcM8Asqg0ACmhbtV5gttQqyR8&currency=EUR"></script>
-<div id="paypal-button-container"></div>
-<script>
-    paypal.Buttons({
-        createOrder: function () {
-            return fetch('/createorder', {
-                method: 'post',
-                headers: {'content-type': 'application/json'}
-            }).then(function (res) {
-                return res.json();
-            }).then(function (data) {
-                console.log(data.orderID);
-                return data.orderID;
-            });
-        }, onApprove: function (data) {
-            return fetch('/onapprove', {
-                method: 'post',
-                headers: {'content-type': 'application/json'},
-                body: JSON.stringify({orderID: data.orderID})
-            }).then(function (res) {
-                return res.json();
-            }).then(function (details) {
-                console.log(`Operation ${details.orderID}. Status: ${details.status}. Customer: ${details.surname}`);
-                alert(`Operation ${details.orderID}. Status: ${details.status}. Customer: ${details.surname}`);
-            })
-        }
-    }).render('#paypal-button-container');
-</script>
-
-
-
-
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="/assets/breadcrumb.jpg">
   <div class="container">
@@ -79,7 +47,7 @@
                 <h5><%= product.name %></h5>
               </td>
               <td class="shoping__cart__price">
-                <%= product.price %>
+                <%= product.price.to_f %> EUR
               </td>
               <td class="shoping__cart__quantity">
                 <div class="quantity">
@@ -89,7 +57,7 @@
                 </div>
               </td>
               <td class="shoping__cart__total">
-                <%= product.price * session[:products].count( product.id ).to_i %>
+                <%= product.price.to_f * session[:products].count( product.id ).to_i %> EUR
               </td>
               <td class="shoping__cart__item__close">
                 <span class="icon_close"></span>
@@ -97,31 +65,14 @@
             </tr>
             <% end %>
 
-            <!--
+            <!-- Miramos si no hay productos para mostrar el mensaje correspondiente -->
+            <% if ! @hayproducts %>
             <tr>
-              <td class="shoping__cart__item">
-                <img src="/assets/cart/cart-2.jpg" alt="">
-                <h5>Fresh Garden Vegetable</h5>
-              </td>
-              <td class="shoping__cart__price">
-                $39.00
-              </td>
-              <td class="shoping__cart__quantity">
-                <div class="quantity">
-                  <div class="pro-qty">
-                    <input type="text" value="1">
-                  </div>
-                </div>
-              </td>
-              <td class="shoping__cart__total">
-                $39.99
-              </td>
-              <td class="shoping__cart__item__close">
-                <span class="icon_close"></span>
+              <td colspan="3" class="shoping__cart__item">
+                No hay productos en la cesta
               </td>
             </tr>
-
-            -->
+            <% end %>
 
 
             </tbody>
@@ -152,13 +103,44 @@
         <div class="shoping__checkout">
           <h5>Cart Total</h5>
           <ul>
-            <li>Subtotal <span>$454.98</span></li>
-            <li>Total <span>$454.98</span></li>
+            <!-- <li>Subtotal <span>$454.98</span></li> -->
+            <li>Total <span><%= @totalprice %> EUR</span></li>
           </ul>
-          <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+          <!-- <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a> -->
+          <div id="paypal-button-container"></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 <!-- Shoping Cart Section End -->
+
+<% if @hayproducts %>
+<script src="https://www.paypal.com/sdk/js?client-id=AfhQAyn2RmF3PXoCnNMMpenYijDrFIcAzXtSZB2hSD55El8LfREtvr6hcM8Asqg0ACmhbtV5gttQqyR8&currency=EUR"></script>
+<script>
+    paypal.Buttons({
+        createOrder: function () {
+            return fetch('/createorder', {
+                method: 'post',
+                headers: {'content-type': 'application/json'}
+            }).then(function (res) {
+                return res.json();
+            }).then(function (data) {
+                console.log(data.orderID);
+                return data.orderID;
+            });
+        }, onApprove: function (data) {
+            return fetch('/onapprove', {
+                method: 'post',
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify({orderID: data.orderID})
+            }).then(function (res) {
+                return res.json();
+            }).then(function (details) {
+                console.log(`Operation ${details.orderID}. Status: ${details.status}. Customer: ${details.surname}`);
+                alert(`Operation ${details.orderID}. Status: ${details.status}. Customer: ${details.surname}`);
+            })
+        }
+    }).render('#paypal-button-container');
+</script>
+<% end %>
