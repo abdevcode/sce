@@ -6,4 +6,9 @@ class ApplicationController < ActionController::Base
       '/products'
     end
   end
+
+
+  def after_sign_up_path_for(resource)
+    '/clients/sign_in'
+  end
 end

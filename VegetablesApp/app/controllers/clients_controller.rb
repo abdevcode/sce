@@ -1,6 +1,10 @@
 class ClientsController < ApplicationController
   def index
-    @client ||= Client.find_by(id: current_client.id)
+    if current_client
+      @client ||= Client.find_by(id: current_client.id)
+    else
+      redirect_to '/products'
+    end
   end
 
   def edit
@@ -30,6 +34,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
+      sign_in(@client, :bypass=>true)
       redirect_to '/clients'
     else
       redirect_to('/clients/new')
