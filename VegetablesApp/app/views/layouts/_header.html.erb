@@ -123,7 +123,7 @@
                 <li><a href="#">English</a></li>
               </ul>
             </div>
-            <div class="header__top__right__auth">
+            <div class="header__top__right__auth" data-turbolinks="false">
               <%if admin_signed_in? %>
                 <%= link_to "Sign out", destroy_admin_session_path, :method => :delete %>
               <%else %>
@@ -142,25 +142,26 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-3">
-        <div class="header__logo">
-          <a href="/"><img src="/assets/logo.png" alt=""></a>
+        <div class="header__logo" data-turbolinks="false">
+          <a href="/"><img src="/assets/logo.png" alt="" data-turbolinks="false"></a>
         </div>
       </div>
       <div class="col-lg-6">
         <nav class="header__menu">
           <ul>
-            <li class="active"><a href="/">Home</a></li>
+            <li class="active" data-turbolinks="false"><a href="/">Home</a></li>
             <%if admin_signed_in? %>
-              <li><a href="/products">Eliminar, modificar o afegir productes</a></li>
-              <li><a href="/categories">Eliminar, modificar o afegir categories</a></li>
+              <li data-turbolinks="false"><a href="/products">Eliminar o modificar</a></li>
+              <li data-turbolinks="false"><a href="/categories">Eliminar, modificar o afegir categories</a></li>
+              <li data-turbolinks="false"><a href="/products/new">Afegir producte</a></li>
             <%else%>
-              <li><a href="/products">Productes</a></li>
+              <li data-turbolinks="false"><a href="/products">Productes</a></li>
               <%if client_signed_in? %>
-                <li><%= link_to 'Veure perfil', '/clients'%></li>
-                <li><%= link_to 'Modificar perfil',edit_client_path(@client)%></li>
-                <li><%= link_to 'Historial de comandas', '/products/'%></li>
+                <li data-turbolinks="false"><%= link_to 'Veure perfil', '/clients'%></li>
+                <li data-turbolinks="false"><%= link_to 'Modificar perfil',edit_client_path(@client)%></li>
+                <li data-turbolinks="false"><%= link_to 'Historial de comandas', '/products/'%></li>
               <%else%>
-                <li><a href="/clients/new">Registrar-se</a></li>
+                <li data-turbolinks="false"><a href="/clients/new">Registrar-se</a></li>
               <%end%>
             <%end %>
           </ul>
