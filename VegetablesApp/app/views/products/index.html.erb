@@ -153,7 +153,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
           <div class="featured__item">
             <div class="featured__item__pic set-bg" data-setbg="<%=  p.image %>">
-              <ul class="featured__item__pic__hover">
+              <ul class="featured__item__pic__hover" data-turbolinks="false">
                 <%if admin_signed_in? %>
                   <li><%= link_to '', '/products/'+p.id.to_s+'/edit', :class => 'fa fa-edit'%> </li>
                   <li><%= link_to '', product_path(p) , method: :delete, data: { confirm: "Are you sure?" } , :class => 'fa fa-trash' %></li>

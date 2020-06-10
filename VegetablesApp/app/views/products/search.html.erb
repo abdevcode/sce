@@ -57,7 +57,7 @@
       <div class="col-lg-9">
         <div class="hero__search">
           <div class="easy-autocomplete">
-            <%= form_with url: search_page_path, local: true, :method => "get", html: {class: "form-inline my-2 my-lg-0"}  do |form| %>
+            <%= form_with url: search_page_path, local: true, :method => "get", html: {class: "form-inline my-2 my-lg-0", id: "buscador"}  do |form| %>
               <%= form.text_field :search, placeholder: "Search", data: {behavior: "autocomplete"}, class: "form-control mr-sm-2" %>
               <%= form.button "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
             <% end %>
@@ -153,7 +153,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
           <div class="featured__item">
             <div class="featured__item__pic set-bg" data-setbg="<%=  p.image %>">
-              <ul class="featured__item__pic__hover">
+              <ul class="featured__item__pic__hover" data-turbolinks="false">
                 <%if admin_signed_in? %>
                   <li><%= link_to '', '/products/'+p.id.to_s+'/edit', :class => 'fa fa-edit'%> </li>
                   <li><%= link_to '', product_path(p) , method: :delete, data: { confirm: "Are you sure?" } , :class => 'fa fa-trash' %></li>
