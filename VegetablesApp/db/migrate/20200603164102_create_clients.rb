@@ -37,6 +37,7 @@ class CreateClients < ActiveRecord::Migration[6.0]
       t.string :zip
       t.string :age
       t.string :gender
+      t.string :preference
       t.timestamps
     end
 

@@ -1,13 +1,14 @@
 <div class="main client-show" data-turbolinks="false">
   <div class="client">
     <div class="info">
-      <p> Nom: <%@client.name %></p>
-      <p> Cognom: <%@client.surname %></p>
-      <p> Adreça: <%= @client.address %></p>
-      <p> Ciutat: <%= @client.city %></p>
+      <p> Nombre: <%@client.name %></p>
+      <p> Apellido: <%@client.surname %></p>
+      <p> Direccion: <%= @client.address %></p>
+      <p> Ciudad: <%= @client.city %></p>
       <p> Zip: <%= @client.zip %></p>
-      <p> Edat: <%= @client.age %></p>
-      <p> Genere: <%= @client.gender %></p>
+      <p> Edad: <%= @client.age %></p>
+      <p> Genero: <%= @client.gender %></p>
+      <p> Preferencia Lengüistica: <%= @client.preference %></p>
     </div>
   </div>
 </div><%= link_to 'Modificar perfil',edit_client_path(@client)%>

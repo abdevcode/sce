@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_083921) do
     t.string "zip"
     t.string "age"
     t.string "gender"
+    t.string "preference"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_clients_on_email", unique: true
