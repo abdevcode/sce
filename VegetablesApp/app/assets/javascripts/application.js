@@ -10,3 +10,4 @@
 //= require_tree .
 //= require bootstrap.bundle.min
 //= require main
+//= require autocomplete-rails

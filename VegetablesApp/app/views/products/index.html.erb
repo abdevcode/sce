@@ -57,8 +57,8 @@
       <div class="col-lg-9">
         <div class="hero__search">
           <div class="hero__search__form">
-            <%= form_with url: search_page_path, local: true, :method => "get", html: {class: "form-inline my-2 my-lg-0"}  do |form| %>
-              <%= form.text_field :search, placeholder: "Search", data: {behavior: "autocomplete"}, class: "form-control mr-sm-2" %>
+            <%= form_with url: search_page_path, local: true, :method => "get", html: {class: "form-inline my-2 my-lg-0", id: "buscador"}  do |form| %>
+              <%= form.text_field :search, placeholder: "Search", data: {behavior: "autocomplete", autocomplete_source: Product.order(:name)}, class: "form-control mr-sm-2" %>
               <%= form.button "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
             <% end %>
           </div>
