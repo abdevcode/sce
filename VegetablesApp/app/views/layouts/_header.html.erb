@@ -151,8 +151,9 @@
           <ul>
             <li class="active" data-turbolinks="false"><a href="/">Home</a></li>
             <%if admin_signed_in? %>
-              <li data-turbolinks="false"><a href="/products">Eliminar, modificar o afegir productes</a></li>
+              <li data-turbolinks="false"><a href="/products">Eliminar o modificar</a></li>
               <li data-turbolinks="false"><a href="/categories">Eliminar, modificar o afegir categories</a></li>
+              <li data-turbolinks="false"><a href="/products/new">Afegir producte</a></li>
             <%else%>
               <li data-turbolinks="false"><a href="/products">Productes</a></li>
               <%if client_signed_in? %>
