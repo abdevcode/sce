@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     patch '/clients/:id/', to: 'clients#update'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'home#index'
+  root 'products#index'
   get '/search' => 'products#search', :as => 'search_page'
   get '/products', to: 'products#index'
   get '/products/new', to: 'products#new'
@@ -35,5 +35,7 @@ Rails.application.routes.draw do
 
   get '/showcart', to: 'cart#showcart'
   post '/addprod', to: 'cart#addprod'
-
+  # PayPal
+  post '/createorder', to: 'cart#createorder'
+  post '/onapprove', to: 'cart#onapprove'
 end

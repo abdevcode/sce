@@ -8,6 +8,10 @@ gem 'ransack'
 gem 'bootstrap'
 gem 'rails-jquery-autocomplete'
 gem 'devise'
+
+# Gema para trabajar con la API REST de PayPal
+gem 'httparty'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use sqlite3 as the database for Active Record
