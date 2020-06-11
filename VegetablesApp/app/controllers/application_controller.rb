@@ -14,14 +14,16 @@ class ApplicationController < ActionController::Base
 
   # Obtener informacion de la cesta de la compra
   def get_cart_information
-    # Obtenemos los productos de la cesta
-    @productscart = Product.find session[:products]
+    # Inicializamos la cesta
+    session[:products] ||= []
 
     # Calculamos el total de productos
     @numproducts = session[:products].count.to_i
     @hayproducts = @numproducts > 0
-
     @totalprice = 0.0
+
+    # Obtenemos los productos de la cesta
+    @productscart = Product.find session[:products]
 
     # Calculamos el precio total de la cesta
     @productscart.uniq.each do |product|

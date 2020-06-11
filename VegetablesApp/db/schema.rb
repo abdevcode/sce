@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_083921) do
   end
 
   create_table "command_products", force: :cascade do |t|
+    t.integer "quantity"
     t.integer "product_id"
     t.integer "command_id"
     t.datetime "created_at", precision: 6, null: false
@@ -70,6 +71,8 @@ ActiveRecord::Schema.define(version: 2020_06_05_083921) do
 
   create_table "commands", force: :cascade do |t|
     t.string "date"
+    t.string "amount"
+    t.string "status"
     t.integer "client_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
