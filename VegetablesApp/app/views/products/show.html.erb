@@ -1,25 +1,3 @@
-<!--
-<div class="main product-show">
-  <div class="product">
-      <div class="info">
-        <%= image_tag @product.image%>
-        <h3 class="product-title"> <%= @product.name %> </h3>
-        <p> Descripció: <%= @product.description %></p>
-        <p> Preu: <%= @product.price %> €/unitat</p>
-        <p> Stock: <%= @product.stock %> unitats restants</p>
-        <p>Categories</p>
-        <% @categories.each do |c| %>
-          <div class="category">
-            <p class="category-name"> <%= c.name%> </p>
-          </div>
-        <% end %>
-      </div>
-  </div>
-</div>
--->
-
-
-
 <!-- Product Details Section Begin -->
 <section class="product-details spad">
   <div class="container">
@@ -60,7 +38,7 @@
           </div>
           -->
 
-          <div class="product__details__price"><%= @product.price %></div>
+          <div class="product__details__price"><%= @product.price %> €</div>
           <p><%= @product.description %></p>
           <div class="product__details__quantity">
             <div class="quantity">
@@ -69,10 +47,10 @@
               </div>
             </div>
           </div>
-          <a href="#" class="primary-btn">ADD TO CARD</a>
+          <a href="#" class="primary-btn"><%= t :add_cart%></a>
           <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
           <ul>
-            <li><b>Availability</b> <span><%= @product.stock %></span></li>
+            <li><b>Stock</b> <span><%= @product.stock %></span></li>
             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
             <li><b>Weight</b> <span>0.5 kg</span></li>
             <li><b>Share on</b>

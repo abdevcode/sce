@@ -39,3 +39,6 @@ cat:
   confirm: "¿Estas segur de volguer eliminar?"
   mod_cat_uniq: "Modificar categoria"
   elim_cat: "Eliminar categoria"
+  description: "Descripció"
+  cat: "Categories"
+  add_cart: "Afegir al cistell"

@@ -1,7 +1,7 @@
 <div class="product"style="margin-left:20px; margin-top:20px;">
   <%= form_for(@product, method: "put") do |f| %>
     <div class="field">
-      <p> <%= f.label :name %></p>
+      <p> <%= f.label t("nom") %></p>
       <%= f.text_field :name %>
     </div>
     <div class="field">
@@ -9,7 +9,7 @@
       <%= f.text_field :image %>
     </div>
     <div class="field">
-      <%= f.label :price %>
+      <%= f.label t("preu") %>
       <br><%= f.text_field :price %>
     </div>
     <div class="field">
@@ -17,16 +17,16 @@
       <br><%= f.text_field :stock %>
     </div>
     <div class="field">
-      <%= f.label :description%>
+      <%= f.label t("description")%>
       <br><%= f.text_area :description %>
     </div>
     <div class="field">
-      <%= f.label 'categories' %>
+      <%= f.label t("cat") %>
       <br />
       <%= f.collection_select :category_ids, @categories, :id, :name, {:prompt => true}, {:multiple => true} %>
     </div>
     <div class="actions">
-      <%= f.submit "Update" %>
+      <%= f.submit t("actualizar") %>
     </div>
   <% end %>
 </div>

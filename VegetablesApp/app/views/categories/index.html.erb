@@ -3,10 +3,10 @@
     <hr style="border-color:white;">
     <nav>
       <%if admin_signed_in?%>
-        <a href="/categories/new" ><%= t :afegir_cat %>></a>
+        <a href="/categories/new" ><%= t :afegir_cat %></a>
       <%end %>
     </nav>
-    <h2><%=t :admin_control %>></h2>
+    <h2><%=t :admin_control %></h2>
     <% @categories.uniq.each do |p| %>
       <div class="category" data-turbolinks="false">
         <h3> <%= p.name %> </h3 >
