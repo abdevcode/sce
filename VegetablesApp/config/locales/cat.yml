@@ -42,3 +42,8 @@ cat:
   description: "Descripció"
   cat: "Categories"
   add_cart: "Afegir al cistell"
+  comprans: "Comprans verdura a bon preu i ecologica"
+  dir_empresa: "Ens podeu trobar a Riudoms, carrer fals 1234"
+  dir_phone: "Tel: 600 000 000"
+  dir_email: "vegetables_riudoms@ecofriendly.com"
+
