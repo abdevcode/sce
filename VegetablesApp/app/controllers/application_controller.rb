@@ -3,12 +3,22 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_locale
   before_action :get_cart_information
+  before_action :inicializar_cliente
 
   def after_sign_in_path_for(resource)
     if admin_signed_in?
       '/'
     else
       '/products'
+    end
+  end
+
+  def inicializar_cliente
+
+    if !admin_signed_in?
+      if client_signed_in?
+        @client ||= Client.find_by(id: current_client.id)
+      end
     end
   end
 
