@@ -19,6 +19,6 @@ var options ={
         }
     }
 }
-        $("input").easyAutocomplete(options)
+        $(input).easyAutocomplete(options)
 }
 );

@@ -1,32 +1,3 @@
-<!--
-<header>
-<div class="wrapper">
-    <div class="Titol">
-        Compra verdura ecol·lògica
-    </div>
-    <hr style="border-color:white;">
-    <nav>
-      <%if admin_signed_in? %>
-        <%= link_to 'Eliminar, modificar o afegir un producte', '/products/'%>
-        <%= link_to 'Eliminar, modificar o afegir una categoria', '/categories/'%>
-        <%= link_to "Sign out", destroy_admin_session_path, :method => :delete %>
-      <%else%>
-        <%if client_signed_in? %>
-          <%= link_to 'Veure perfil', '/clients'%>
-          <%= link_to 'Modificar perfil',edit_client_path(@client)%>
-          <%= link_to 'Historial de comandas', '/products/'%>
-          <%= link_to "Sign out", destroy_client_session_path, :method => :delete %>
-        <%else%>
-          <a href="/clients/new">Registrar-se</a>
-          <%= link_to 'Iniciar sessió', '/clients/sign_in'%>
-        <%end%>
-      <%end %>
-    </nav>
-</div>
-</header>
--->
-
-
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
@@ -47,12 +18,6 @@
   <div class="humberger__menu__widget">
     <div class="header__top__right__language">
       <img src="/assets/language.png" alt="">
-      <div>English</div>
-      <span class="arrow_carrot-down"></span>
-      <ul>
-        <li><a href="#">Spanis</a></li>
-        <li><a href="#">English</a></li>
-      </ul>
     </div>
     <div class="header__top__right__auth">
       <a href="/clients/sign_in"><i class="fa fa-user"></i> <%=t :login %></a>
@@ -102,7 +67,7 @@
           <div class="header__top__left">
             <ul>
               <li><i class="fa fa-envelope"></i> vegetables_riudoms@ecofriendly.com</li>
-              <li>Comprans verdura a bon preu i ecologica</li>
+              <li><%=t :comprans %></li>
             </ul>
           </div>
         </div>
@@ -114,15 +79,21 @@
               <a href="#"><i class="fa fa-linkedin"></i></a>
               <a href="#"><i class="fa fa-pinterest-p"></i></a>
             </div>
-            <div class="header__top__right__language">
-              <img src="/assets/language.png" alt="">
-              <div>English</div>
-              <span class="arrow_carrot-down"></span>
-              <ul>
-                <li><a href="#">Spanis</a></li>
-                <li><a href="#">English</a></li>
-              </ul>
-            </div>
+              <%if client_signed_in? %>
+                <%if @client.preference=="es" %>
+                  <div class="header__top__right__language">
+                    <img src="/assets/spain.png" alt="">
+                  </div>
+                <%else %>
+                  <div class="header__top__right__language">
+                    <img src="/assets/cat.png" alt="">
+                  </div>
+                <%end %>
+              <%else %>
+                <div class="header__top__right__language">
+                  <img src="/assets/spain.png" alt="">
+                </div>
+              <%end %>
             <div class="header__top__right__auth" data-turbolinks="false">
               <%if admin_signed_in? %>
                 <%= link_to t("logout"), destroy_admin_session_path, :method => :delete %>
