@@ -47,7 +47,9 @@
               </div>
             </div>
           </div>
-          <a href="#" class="primary-btn"><%= t :add_cart%></a>
+          <li > <%= link_to({:controller => "cart", :action => :addprod, :item => @product.id }, {:method => :post}) do %>
+              <i class="primary-btn"><%= t :add_cart%></i>
+            <% end %> </li>
           <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
           <ul>
             <li><b>Stock</b> <span><%= @product.stock %></span></li>
