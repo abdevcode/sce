@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_083921) do
     t.float "price"
     t.string "stock"
     t.string "image"
+    t.boolean "cistell"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

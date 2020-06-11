@@ -51,3 +51,6 @@ es:
   mod_prod_uniq: "Modificar producto"
   image: "Link de la imagen"
   welcome: "Bienvenido"
+  cist: "Tipo de productos"
+  tipus_p: "Producto normal"
+  tipus_q: "Cesta"

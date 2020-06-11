@@ -3,7 +3,7 @@
   <div class="container">
     <div class="checkout__form">
       <h4><%= t :afegir_productes %></h4>
-      <%= form_for(@product, method: "put") do |f| %>
+      <%= form_for(@product) do |f| %>
         <div class="row">
           <div class="col-lg-8 col-md-6">
             <div class="col-lg-6">
@@ -41,6 +41,13 @@
                 <%= f.label t("cat") %>
                 <br />
                 <%= f.collection_select :category_ids, @categories, :id, :name, {:prompt => true}, {:multiple => true} %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="field">
+                <%= f.label t :cist%>
+                <br>
+                <%=t :tipus_p %>: <%= radio_button_tag 'cist', false %>  <%=t :tipus_q %>: <%= radio_button_tag 'cist', true %>
               </div>
             </div>
             <div class="btn btn-lg">

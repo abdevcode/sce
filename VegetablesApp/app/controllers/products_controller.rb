@@ -3,13 +3,16 @@ class ProductsController < ApplicationController
   def index
     session[:products] ||= []
 
-    @products = Product.all
+    @products = Product.where(cistell: false)
+    @products_cist =  Product.where(cistell: true)
     if !admin_signed_in?
       if client_signed_in?
         @client ||= Client.find_by(id: current_client.id)
       end
     end
+
     @products = @products.uniq{ |product| [product.name] }
+    @products_cist =  @products_cist.uniq{ |product| [product.name] }
   end
 
   def edit
@@ -48,6 +51,7 @@ class ProductsController < ApplicationController
       @client ||= Client.find_by(id: current_client.id)
     end
     @product = Product.find params[:id]
+    @product.cistell = params[:cist]
     if @product.update_attributes(product_params)
       redirect_to '/products'
     else
@@ -62,6 +66,7 @@ class ProductsController < ApplicationController
       end
     end
     @product = Product.new(product_params)
+    @product.cistell = params[:cist]
     if @product.save
       redirect_to '/products'
     else
@@ -84,7 +89,8 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.ransack(name_cont: params[:search]).result(distinct: true).limit(5)
+    @products = Product.ransack(name_cont: params[:search]).result(distinct: true).limit(5).where(cistell: false)
+    @products_cist = Product.ransack(name_cont: params[:search]).result(distinct: true).limit(5).where(cistell: true)
   end
 
   private

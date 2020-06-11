@@ -43,6 +43,13 @@
                 <%= f.collection_select :category_ids, @categories, :id, :name, {:prompt => true}, {:multiple => true} %>
               </div>
             </div>
+            <div class="col-lg-6">
+              <div class="field">
+                <%= f.label t :cist%>
+                <br>
+                <%=t :tipus_p %>: <%= radio_button_tag 'cist', false %>  <%=t :tipus_q %>: <%= radio_button_tag 'cist', true %>
+              </div>
+            </div>
             <div class="btn btn-lg">
               <%= f.submit t("actualizar") %>
             </div>
