@@ -65,12 +65,16 @@ class CartController < ApplicationController
       @command = Command.find_by(paypal_order_id: @response["id"])
       @command.ended = true
       @command.amount = @response["purchase_units"][0]["payments"]["captures"][0]["amount"]["value"]
-      @command.save
+
+      if @command.save
+        redirect_to '/showcommand'
+      else
+        render json: {surname: "#{@response["payer"]["name"]["surname"]}", orderID: "#{@response["id"]}", status: "#{@response["status"]}"}
+      end
+
+    else
+      render json: {surname: "#{@response["payer"]["name"]["surname"]}", orderID: "#{@response["id"]}", status: "#{@response["status"]}"}
     end
-
-
-
-    render json: {surname: "#{@response["payer"]["name"]["surname"]}", orderID: "#{@response["id"]}", status: "#{@response["status"]}"}
   end
 
   # Metodo para mostrar la lista de la compra
@@ -88,12 +92,20 @@ class CartController < ApplicationController
 
   # Metodo para quitar productos de la cesta
   def deleteprod
-    (session[:products] ||= []).delete(params[:item].to_i)
+    (session[:products] ||= []).slice!(session[:products].index(params[:item].to_i))
+
+    # Hay que recargar la pagina para que se vean los cambios realizados
+    # --> Seria mejor con JQuery y AJAX
+    # redirect_to '/showcart'
   end
 
   # Metodo para eliminar productos de la cesta
   def removeprod
-    (session[:products] ||= []).reject{params[:item].to_i}
+    (session[:products] ||= []).delete(params[:item].to_i)
+
+    # Hay que recargar la pagina para que se vean los cambios realizados
+    # --> Seria mejor con JQuery y AJAX
+    # redirect_to '/showcart'
   end
 
   # Obtener informacion de la cesta de la compra

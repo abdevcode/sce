@@ -46,7 +46,19 @@
                 <td class="shoping__cart__quantity">
                   <div class="quantity">
                     <div class="pro-qty">
+
+
+                      <%= link_to({:controller => "cart", :action => :deleteprod, :item => product.id }, {:method => :post}) do %>
+                        <span class="dec qtybtn">-</span>
+                      <% end %>
+
+
+
+
                       <input type="text" value="<%= session[:products].count( product.id ) %>">
+                      <%= link_to({:controller => "cart", :action => :addprod, :item => product.id }, {:method => :post}) do %>
+                      <span class="inc qtybtn">+</span>
+                      <% end %>
                     </div>
                   </div>
                 </td>
@@ -54,7 +66,10 @@
                   <%= (product.price.to_f * session[:products].count( product.id ).to_i).round(2) %> EUR
                 </td>
                 <td class="shoping__cart__item__close">
-                  <span class="icon_close"></span>
+                  <%= link_to({:controller => "cart", :action => :removeprod, :item => product.id }, {:method => :post}) do %>
+                    <span class="icon_close"></span>
+                  <% end %>
+
                 </td>
               </tr>
             <% end %>
@@ -97,11 +112,22 @@
         <div class="shoping__checkout">
           <h5><%= t :cart %> Total</h5>
           <ul>
-            <!-- <li>Subtotal <span>$454.98</span></li> -->
             <li>Total <span><%= @totalprice %> EUR</span></li>
           </ul>
-          <!-- <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a> -->
-          <div id="paypal-button-container"></div>
+          <%
+            if !admin_signed_in?
+              if client_signed_in?
+          %>
+              <div id="paypal-button-container"></div>
+          <%
+              else
+          %>
+              <a href="/clients/sign_in" class="primary-btn "><i class="fa fa-user"></i> <%=t :login %></a>
+          <%
+              end
+          end
+          %>
+
         </div>
       </div>
     </div>
