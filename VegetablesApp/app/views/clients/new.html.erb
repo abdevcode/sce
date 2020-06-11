@@ -1,48 +1,48 @@
-<body>
 <div class="client"style="margin-left:20px; margin-top:20px;">
   <%= form_for(@client) do |f| %>
     <div class="field">
-      <p> <%= f.label :name %></p>
+      <%= f.label t :nom %>
       <%= f.text_field :name%>
     </div>
     <div class="field">
-      <p> <%= f.label :surname%></p>
+      <%= f.label t :cognom%>
       <%= f.text_field :surname%>
     </div>
     <div class="field">
-      <p><%= f.label :address %></p>
+      <p><%= f.label t :direccio %></p>
       <%= f.text_field :address %>
     </div>
     <div class="field">
-      <%= f.label :city %>
+      <%= f.label t :ciutat %>
       <br><%= f.text_field :city %>
     </div>
     <div class="field">
-      <%= f.label :zip %>
+      <%= f.label t :zip %>
       <br><%= f.text_field :zip %>
     </div>
     <div class="field">
-      <%= f.label :age%>
+      <%= f.label t :edat%>
       <br><%= f.text_field :age %>
     </div>
     <div class="field">
-      <%= f.label :gender%>
+      <%= f.label t :genere%>
       <br><%= f.text_field :gender %>
     </div>
     <div class="field">
-      <%= f.label :email%>
+      <%= f.label t :email%>
       <br><%= f.text_field :email %>
     </div>
     <div class="field">
-      <%= f.label :password%>
+      <%= f.label t :pass%>
       <br><%= f.password_field :password %>
     </div>
     <div class="field">
+      <%= f.label t :pref%>
+      <br>
       Cat: <%= radio_button_tag 'exp', "cat" %>Es: <%= radio_button_tag 'exp', "es" %>
     </div>
     <div class="actions">
-      <%= f.submit "Create" %>
+      <%= f.submit "Update" %>
     </div>
   <% end %>
 </div>
-</body>

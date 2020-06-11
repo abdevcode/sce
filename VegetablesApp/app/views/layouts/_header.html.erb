@@ -55,7 +55,7 @@
       </ul>
     </div>
     <div class="header__top__right__auth">
-      <a href="/clients/sign_in"><i class="fa fa-user"></i> Login</a>
+      <a href="/clients/sign_in"><i class="fa fa-user"></i> <%=t :login %></a>
     </div>
   </div>
   <nav class="humberger__menu__nav mobile-menu">
@@ -125,12 +125,12 @@
             </div>
             <div class="header__top__right__auth" data-turbolinks="false">
               <%if admin_signed_in? %>
-                <%= link_to "Sign out", destroy_admin_session_path, :method => :delete %>
+                <%= link_to t("logout"), destroy_admin_session_path, :method => :delete %>
               <%else %>
                 <%if client_signed_in? %>
-                  <%= link_to "Sign out", destroy_client_session_path, :method => :delete %>
+                  <%= link_to t("logout"), destroy_client_session_path, :method => :delete %>
                 <%else %>
-                  <a href="/clients/sign_in"><i class="fa fa-user"></i> Login</a>
+                  <a href="/clients/sign_in"><i class="fa fa-user"></i> <%=t :login %></a>
                 <%end %>
               <%end %>
             </div>
