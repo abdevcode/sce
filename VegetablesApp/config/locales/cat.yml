@@ -54,4 +54,6 @@ cat:
   cist: "Tipus de producte"
   tipus_p: "Producte normal"
   tipus_q: "Cistella"
-
+  comand: "La teva comanda"
+  fecha: "Data"
+  admin: "Administrador"
