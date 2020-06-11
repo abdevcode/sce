@@ -12,28 +12,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # Obtener informacion de la cesta de la compra
-  def get_cart_information
-    # Obtenemos los productos de la cesta
-    @productscart = Product.find session[:products]
-
-    # Calculamos el total de productos
-    @numproducts = session[:products].count.to_i
-    @hayproducts = @numproducts > 0
-
-    @totalprice = 0.0
-
-    # Calculamos el precio total de la cesta
-    @productscart.uniq.each do |product|
-      # Multiplicacmos el precio por la cantidad seleccionada
-      @totalprice += product.price.to_f * session[:products].count( product.id ).to_i
-    end
-
-    # Redondeamos a 2 decimales el precio
-    @totalprice = @totalprice.round(2)
-  end
-
-
   private
 
   def set_locale
