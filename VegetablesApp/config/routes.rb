@@ -38,10 +38,10 @@ Rails.application.routes.draw do
     post '/addprod', to: 'cart#addprod'
     post '/deleteprod', to: 'cart#deleteprod'
     post '/removeprod', to: 'cart#removeprod'
-
-
     # PayPal
     post '/createorder', to: 'cart#createorder'
     post '/onapprove', to: 'cart#onapprove'
+
+    get '/showcommand', to: 'commands#show'
   end
 end

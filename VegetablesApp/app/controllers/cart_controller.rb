@@ -35,23 +35,15 @@ class CartController < ApplicationController
 
 
 
-    # amount = @response["purchase_units"]["payments"]["captures"]["amount"]["value"]
-    # date = @response["purchase_units"]["payments"]["captures"]["create_time"]
-
-    # id: current_client.id
     # Validar que el client ID no sea null
-    # command_id = Command.new(token: @paypaltoken, date: date, amount: amount, client_id: current_client.id)
     @command = Command.new(paypal_order_id: @response["id"], ended: false, client_id: current_client.id)
     @command.save
-    Rails.logger.debug("Comanda: #{@command.id} -- #{@command.paypal_order_id} -- #{@command.ended}")
 
     @productscart.uniq.each do |product|
       # Multiplicacmos el precio por la cantidad seleccionada
-      # @totalprice += product.price.to_f *
       quantity = session[:products].count( product.id ).to_i
       @commandProduct = CommandProduct.new(quantity: quantity, product_id: product.id, command_id: @command.id)
-
-      Rails.logger.debug("Comanda: #{@commandProduct}")
+      @commandProduct.save
     end
 
 
@@ -68,15 +60,14 @@ class CartController < ApplicationController
                                           :body => {}.to_json, :debug_output => Rails.logger)
     Rails .logger.debug("My object2: #{@response.inspect}")
 
+    # Si la comanda ha finalizado con exito
+    if @response["status"] == "COMPLETED"
+      @command = Command.find_by(paypal_order_id: @response["id"])
+      @command.ended = true
+      @command.amount = @response["purchase_units"][0]["payments"]["captures"][0]["amount"]["value"]
+      @command.save
+    end
 
-
-    amount = @response["purchase_units"]["payments"]["captures"]["amount"]["value"]
-    date = @response["purchase_units"]["payments"]["captures"]["create_time"]
-
-    command = Command.find_by(token: @response["id"])
-    command.ended = true
-    command.date = @response["purchase_units"]["payments"]["captures"]["create_time"]
-    command.amount = @response["purchase_units"]["payments"]["captures"]["amount"]["value"]
 
 
     render json: {surname: "#{@response["payer"]["name"]["surname"]}", orderID: "#{@response["id"]}", status: "#{@response["status"]}"}

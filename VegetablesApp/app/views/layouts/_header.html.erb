@@ -130,7 +130,7 @@
               <%if client_signed_in? %>
                 <li data-turbolinks="false"><%= link_to t("veure_perfil"), '/clients'%></li>
                 <li data-turbolinks="false"><%= link_to t("mod_perfil"),edit_client_path(@client)%></li>
-                <li data-turbolinks="false"><%= link_to t("veure_hist"), '/products/'%></li>
+                <li data-turbolinks="false"><%= link_to t("veure_hist"), '/showcommand'%></li>
               <%else%>
                 <li data-turbolinks="false"><a href="/clients/new"><%= t :Registre%></a></li>
               <%end%>
