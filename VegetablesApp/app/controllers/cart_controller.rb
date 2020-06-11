@@ -41,13 +41,17 @@ class CartController < ApplicationController
     # id: current_client.id
     # Validar que el client ID no sea null
     # command_id = Command.new(token: @paypaltoken, date: date, amount: amount, client_id: current_client.id)
-    command = Command.new(paypal_order_id: @response["id"], status: "UNCOMPLETED", client_id: current_client.id)
+    @command = Command.new(paypal_order_id: @response["id"], ended: false, client_id: current_client.id)
+    @command.save
+    Rails.logger.debug("Comanda: #{@command.id} -- #{@command.paypal_order_id} -- #{@command.ended}")
 
     @productscart.uniq.each do |product|
       # Multiplicacmos el precio por la cantidad seleccionada
       # @totalprice += product.price.to_f *
       quantity = session[:products].count( product.id ).to_i
-      CommandProduct.new(quantity: quantity, product_id: product.id, command_id: command.id)
+      @commandProduct = CommandProduct.new(quantity: quantity, product_id: product.id, command_id: @command.id)
+
+      Rails.logger.debug("Comanda: #{@commandProduct}")
     end
 
 
@@ -70,7 +74,7 @@ class CartController < ApplicationController
     date = @response["purchase_units"]["payments"]["captures"]["create_time"]
 
     command = Command.find_by(token: @response["id"])
-    command.status = @response["status"]
+    command.ended = true
     command.date = @response["purchase_units"]["payments"]["captures"]["create_time"]
     command.amount = @response["purchase_units"]["payments"]["captures"]["amount"]["value"]
 
