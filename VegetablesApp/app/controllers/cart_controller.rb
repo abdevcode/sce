@@ -60,21 +60,17 @@ class CartController < ApplicationController
                                           :body => {}.to_json, :debug_output => Rails.logger)
     Rails .logger.debug("My object2: #{@response.inspect}")
 
+    session[:products] = []
+
     # Si la comanda ha finalizado con exito
     if @response["status"] == "COMPLETED"
       @command = Command.find_by(paypal_order_id: @response["id"])
       @command.ended = true
       @command.amount = @response["purchase_units"][0]["payments"]["captures"][0]["amount"]["value"]
-
-      if @command.save
-        redirect_to '/showcommand'
-      else
-        render json: {surname: "#{@response["payer"]["name"]["surname"]}", orderID: "#{@response["id"]}", status: "#{@response["status"]}"}
-      end
-
-    else
-      render json: {surname: "#{@response["payer"]["name"]["surname"]}", orderID: "#{@response["id"]}", status: "#{@response["status"]}"}
+      @command.save
     end
+
+    render json: {surname: "#{@response["payer"]["name"]["surname"]}", orderID: "#{@response["id"]}", status: "#{@response["status"]}"}
   end
 
   # Metodo para mostrar la lista de la compra

@@ -159,6 +159,7 @@
               }).then(function (details) {
                   console.log(`Operation ${details.orderID}. Status: ${details.status}. Customer: ${details.surname}`);
                   alert(`Operation ${details.orderID}. Status: ${details.status}. Customer: ${details.surname}`);
+                  window.open('showcommand', '_self');
               })
           }
       }).render('#paypal-button-container');
