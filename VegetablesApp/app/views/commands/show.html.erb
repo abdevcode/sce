@@ -4,9 +4,9 @@
     <% @Commands.each do |command| %>
       <div class="col-lg-4 col-md-6 d-inline-block mb-5">
         <div class="checkout__order">
-          <h4>Your Command</h4>
+          <h4><%= t :comand %></h4>
 
-          <div class="checkout__order__products">Products <span>Total</span></div>
+          <div class="checkout__order__products"><%=t :Productes %> <span>Total</span></div>
           <ul>
             <% command.command_products.each do |com_prod| %>
               <li> <%= com_prod.product.name %> (x<%= com_prod.quantity %>) <span><%= (com_prod.product.price.to_f * com_prod.quantity).round(2) %> EUR</span></li>
@@ -16,7 +16,7 @@
 
           <div>
             <ul>
-              <li>Fecha <span><%= command.created_at %></span></li>
+              <li><%= t :fecha %> <span><%= command.created_at %></span></li>
             </ul>
           </div>
 
