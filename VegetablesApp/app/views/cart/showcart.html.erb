@@ -4,10 +4,10 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="breadcrumb__text">
-          <h2>Shopping Cart</h2>
-          <div class="breadcrumb__option">
-            <a href="./index.html">Home</a>
-            <span>Shopping Cart</span>
+          <h2><%= t :cart %></h2>
+          <div class="breadcrumb__option" data-turbolinks="false">
+            <a href="/"><%= t :Home %> </a>
+            <span><%= t :cart %> Compra</span>
           </div>
         </div>
       </div>
@@ -15,12 +15,6 @@
   </div>
 </section>
 <!-- Breadcrumb Section End -->
-
-<%= @productscart %>
-<%= session[:products] %>
-
-<%= "0.20".to_f %>
-
 <!-- Shoping Cart Section Begin -->
 <section class="shoping-cart spad">
   <div class="container">
@@ -30,10 +24,10 @@
           <table>
             <thead>
             <tr>
-              <th class="shoping__product">Products</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
+              <th class="shoping__product"><%= t :Productes %></th>
+              <th><%= t :preu %></th>
+              <th><%= t :quantitat %></th>
+              <th><%= t :total %></th>
               <th></th>
             </tr>
             </thead>
@@ -41,37 +35,37 @@
 
 
             <% @productscart.uniq.each do |product| %>
-            <tr>
-              <td class="shoping__cart__item">
-                <img src="<%= product.image %>" alt="">
-                <h5><%= product.name %></h5>
-              </td>
-              <td class="shoping__cart__price">
-                <%= product.price.to_f %> EUR
-              </td>
-              <td class="shoping__cart__quantity">
-                <div class="quantity">
-                  <div class="pro-qty">
-                    <input type="text" value="<%= session[:products].count( product.id ) %>">
+              <tr>
+                <td class="shoping__cart__item">
+                  <img src="<%= product.image %>" alt="">
+                  <h5><%= product.name %></h5>
+                </td>
+                <td class="shoping__cart__price">
+                  <%= product.price.to_f %> EUR
+                </td>
+                <td class="shoping__cart__quantity">
+                  <div class="quantity">
+                    <div class="pro-qty">
+                      <input type="text" value="<%= session[:products].count( product.id ) %>">
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td class="shoping__cart__total">
-                <%= (product.price.to_f * session[:products].count( product.id ).to_i).round(2) %> EUR
-              </td>
-              <td class="shoping__cart__item__close">
-                <span class="icon_close"></span>
-              </td>
-            </tr>
+                </td>
+                <td class="shoping__cart__total">
+                  <%= (product.price.to_f * session[:products].count( product.id ).to_i).round(2) %> EUR
+                </td>
+                <td class="shoping__cart__item__close">
+                  <span class="icon_close"></span>
+                </td>
+              </tr>
             <% end %>
 
             <!-- Miramos si no hay productos para mostrar el mensaje correspondiente -->
             <% if ! @hayproducts %>
-            <tr>
-              <td colspan="3" class="shoping__cart__item">
-                No hay productos en la cesta
-              </td>
-            </tr>
+              <tr>
+                <td colspan="3" class="shoping__cart__item">
+                  <%= t :no_prod %>
+                </td>
+              </tr>
             <% end %>
 
 
@@ -82,26 +76,26 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <div class="shoping__cart__btns">
-          <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-          <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-            Upadate Cart</a>
+        <div class="shoping__cart__btns" data-turbolinks="false">
+          <a href="/products" class="primary-btn cart-btn"><%= t :cont_comp %></a>
+          <a href="/showcart" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+            <%= t :act_comp %></a>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="shoping__continue">
           <div class="shoping__discount">
-            <h5>Discount Codes</h5>
+            <h5><%= t :disc %></h5>
             <form action="#">
               <input type="text" placeholder="Enter your coupon code">
-              <button type="submit" class="site-btn">APPLY COUPON</button>
+              <button type="submit" class="site-btn"><%= t :app_disc %></button>
             </form>
           </div>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="shoping__checkout">
-          <h5>Cart Total</h5>
+          <h5><%= t :cart %> Total</h5>
           <ul>
             <!-- <li>Subtotal <span>$454.98</span></li> -->
             <li>Total <span><%= @totalprice %> EUR</span></li>
@@ -116,31 +110,31 @@
 <!-- Shoping Cart Section End -->
 
 <% if @hayproducts %>
-<script src="https://www.paypal.com/sdk/js?client-id=AfhQAyn2RmF3PXoCnNMMpenYijDrFIcAzXtSZB2hSD55El8LfREtvr6hcM8Asqg0ACmhbtV5gttQqyR8&currency=EUR"></script>
-<script>
-    paypal.Buttons({
-        createOrder: function () {
-            return fetch('/createorder', {
-                method: 'post',
-                headers: {'content-type': 'application/json'}
-            }).then(function (res) {
-                return res.json();
-            }).then(function (data) {
-                console.log(data.orderID);
-                return data.orderID;
-            });
-        }, onApprove: function (data) {
-            return fetch('/onapprove', {
-                method: 'post',
-                headers: {'content-type': 'application/json'},
-                body: JSON.stringify({orderID: data.orderID})
-            }).then(function (res) {
-                return res.json();
-            }).then(function (details) {
-                console.log(`Operation ${details.orderID}. Status: ${details.status}. Customer: ${details.surname}`);
-                alert(`Operation ${details.orderID}. Status: ${details.status}. Customer: ${details.surname}`);
-            })
-        }
-    }).render('#paypal-button-container');
-</script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AfhQAyn2RmF3PXoCnNMMpenYijDrFIcAzXtSZB2hSD55El8LfREtvr6hcM8Asqg0ACmhbtV5gttQqyR8&currency=EUR"></script>
+  <script>
+      paypal.Buttons({
+          createOrder: function () {
+              return fetch('/createorder', {
+                  method: 'post',
+                  headers: {'content-type': 'application/json'}
+              }).then(function (res) {
+                  return res.json();
+              }).then(function (data) {
+                  console.log(data.orderID);
+                  return data.orderID;
+              });
+          }, onApprove: function (data) {
+              return fetch('/onapprove', {
+                  method: 'post',
+                  headers: {'content-type': 'application/json'},
+                  body: JSON.stringify({orderID: data.orderID})
+              }).then(function (res) {
+                  return res.json();
+              }).then(function (details) {
+                  console.log(`Operation ${details.orderID}. Status: ${details.status}. Customer: ${details.surname}`);
+                  alert(`Operation ${details.orderID}. Status: ${details.status}. Customer: ${details.surname}`);
+              })
+          }
+      }).render('#paypal-button-container');
+  </script>
 <% end %>

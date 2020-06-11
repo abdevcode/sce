@@ -156,11 +156,11 @@
               <ul class="featured__item__pic__hover" data-turbolinks="false">
                 <%if admin_signed_in? %>
                   <li><%= link_to '', '/products/'+p.id.to_s+'/edit', :class => 'fa fa-edit'%> </li>
-                  <li><%= link_to '', product_path(p) , method: :delete, data: { confirm: "Are you sure?" } , :class => 'fa fa-trash' %></li>
+                  <li><%= link_to '', product_path(p) , method: :delete, data: { confirm: t("confirm") } , :class => 'fa fa-trash' %></li>
                 <% end %>
                 <!-- Ponemos la llamada POST del producto a la lista de la compra -->
                 <!-- <li><a href=><i class="fa fa-shopping-cart"></i></a></li> -->
-                <li> <%= link_to({:controller => "cart", :action => :addprod, :item => p.id }, {:method => :post}) do %>
+                <li > <%= link_to({:controller => "cart", :action => :addprod, :item => p.id }, {:method => :post}) do %>
                     <i class="fa fa-shopping-cart"></i>
                   <% end %> </li>
 
@@ -170,7 +170,7 @@
 
               </ul>
             </div>
-            <div class="featured__item__text">
+            <div class="featured__item__text" data-turbolinks="false">
               <!-- <h6><a href="#">< %= p.name %></a></h6> -->
 
               <h6><%= link_to p.name, product_path(p) %></h6>

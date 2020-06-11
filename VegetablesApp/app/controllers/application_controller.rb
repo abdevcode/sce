@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # Obtener informacion de la cesta de la compra
   def get_cart_information
     # Inicializamos la cesta
     session[:products] ||= []
@@ -30,11 +29,7 @@ class ApplicationController < ActionController::Base
       # Multiplicacmos el precio por la cantidad seleccionada
       @totalprice += product.price.to_f * session[:products].count( product.id ).to_i
     end
-
-    # Redondeamos a 2 decimales el precio
-    @totalprice = @totalprice.round(2)
   end
-
 
   private
 
