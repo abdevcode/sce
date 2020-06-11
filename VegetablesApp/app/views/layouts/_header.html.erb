@@ -68,6 +68,10 @@
             <ul>
               <%if client_signed_in? %>
                 <li><i class="fa fa-user"></i><%=t("welcome") %> <%=  @client.name %></li>
+              <%else %>
+                <%if admin_signed_in? %>
+                  <li><i class="fa fa-user"></i><%=t("welcome") %> <%=  t :admin %></li>
+                <% end %>
               <% end %>
               <li><%=t :comprans %></li>
             </ul>
