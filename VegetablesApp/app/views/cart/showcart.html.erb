@@ -57,7 +57,7 @@
                 </div>
               </td>
               <td class="shoping__cart__total">
-                <%= product.price.to_f * session[:products].count( product.id ).to_i %> EUR
+                <%= (product.price.to_f * session[:products].count( product.id ).to_i).round(2) %> EUR
               </td>
               <td class="shoping__cart__item__close">
                 <span class="icon_close"></span>

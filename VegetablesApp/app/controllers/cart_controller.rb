@@ -1,23 +1,6 @@
 class CartController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_paypaltoken, :only => [:createorder, :onapprove]
-  before_action :get_totalprice, :only => [:createorder, :showcart]
-
-  def get_totalprice
-    # Obtenemos los productos de la cesta
-    @productscart = Product.find session[:products]
-
-    @totalprice = 0.0
-
-    # Calculamos el precio total de la cesta
-    @productscart.uniq.each do |product|
-      # Multiplicacmos el precio por la cantidad seleccionada
-      @totalprice += product.price.to_f * session[:products].count( product.id ).to_i
-    end
-
-    # Redondeamos a 2 decimales el precio
-    @totalprice = @totalprice.round(2)
-  end
 
   def set_paypaltoken
     # Especificamos nuestro client_id y secret
@@ -61,9 +44,7 @@ class CartController < ApplicationController
 
   # Metodo para mostrar la lista de la compra
   def showcart
-    # Calculamos el total de productos
-    @numproducts = session[:products].count.to_i
-    @hayproducts = @numproducts > 0
+
   end
 
   # Metodo para añadir productos a la lista de la compra
