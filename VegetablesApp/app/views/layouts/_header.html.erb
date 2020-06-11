@@ -149,19 +149,19 @@
       <div class="col-lg-6">
         <nav class="header__menu">
           <ul>
-            <li class="active" data-turbolinks="false"><a href="/">Home</a></li>
+            <li class="active" data-turbolinks="false"><a href="/"><%= t :Home%></a></li>
             <%if admin_signed_in? %>
-              <li data-turbolinks="false"><a href="/products">Eliminar o modificar</a></li>
-              <li data-turbolinks="false"><a href="/categories">Eliminar, modificar o afegir categories</a></li>
-              <li data-turbolinks="false"><a href="/products/new">Afegir producte</a></li>
+              <li data-turbolinks="false"><a href="/products"><%= t :mod_prod%></a></li>
+              <li data-turbolinks="false"><a href="/categories"><%= t :mod_cat%></a></li>
+              <li data-turbolinks="false"><a href="/products/new"><%= t :afegir_productes%></a></li>
             <%else%>
               <li data-turbolinks="false"><a href="/products"><%= t :Productes%></a></li>
               <%if client_signed_in? %>
-                <li data-turbolinks="false"><%= link_to 'Veure perfil', '/clients', locale: :cat%></li>
-                <li data-turbolinks="false"><%= link_to 'Modificar perfil',edit_client_path(@client)%></li>
-                <li data-turbolinks="false"><%= link_to 'Historial de comandas', '/products/'%></li>
+                <li data-turbolinks="false"><%= link_to t("veure_perfil"), '/clients'%></li>
+                <li data-turbolinks="false"><%= link_to t("mod_perfil"),edit_client_path(@client)%></li>
+                <li data-turbolinks="false"><%= link_to t("veure_hist"), '/products/'%></li>
               <%else%>
-                <li data-turbolinks="false"><a href="/clients/new">Registrar-se</a></li>
+                <li data-turbolinks="false"><a href="/clients/new"><%= t :Registre%></a></li>
               <%end%>
             <%end %>
           </ul>

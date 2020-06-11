@@ -8,7 +8,7 @@
       <p> Zip: <%= @client.zip %></p>
       <p> Edad: <%= @client.age %></p>
       <p> Genero: <%= @client.gender %></p>
-      <p> Preferencia Lengüistica: <%= @client.preference %></p>
+      <p> Preferencia Lengüistica: <%=request.env["HTTP_ACCEPT_LANGUAGE"]%></p>
     </div>
   </div>
 </div>

@@ -1,3 +1,11 @@
 es:
   hello: "Hola"
   Productes: "productos"
+  Home: "Inicio"
+  Registre: "Registrar-se"
+  afegir_productes: "Añadir Productos"
+  mod_prod: "Eliminar o modificar productos"
+  mod_cat: "Eliminar o modificar categorias"
+  veure_perfil: "Ver Perfil"
+  veure_hist: "Ver historial de comandas"
+  mod_perfil: "Modificar perfil"
