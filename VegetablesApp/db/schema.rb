@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 2020_06_05_083921) do
   end
 
   create_table "commands", force: :cascade do |t|
-    t.string "date"
     t.string "amount"
     t.string "paypal_order_id"
     t.boolean "ended"
