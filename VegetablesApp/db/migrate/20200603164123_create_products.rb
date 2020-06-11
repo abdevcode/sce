@@ -6,6 +6,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.float :price
       t.string :stock
       t.string :image
+      t.boolean :cistell
       t.timestamps
     end
   end

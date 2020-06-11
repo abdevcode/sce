@@ -66,19 +66,15 @@
         <div class="col-lg-6 col-md-6">
           <div class="header__top__left">
             <ul>
-              <li><i class="fa fa-envelope"></i> vegetables_riudoms@ecofriendly.com</li>
+              <%if client_signed_in? %>
+                <li><i class="fa fa-user"></i><%=t("welcome") %> <%=  @client.name %></li>
+              <% end %>
               <li><%=t :comprans %></li>
             </ul>
           </div>
         </div>
         <div class="col-lg-6 col-md-6">
           <div class="header__top__right">
-            <div class="header__top__right__social">
-              <a href="#"><i class="fa fa-facebook"></i></a>
-              <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-linkedin"></i></a>
-              <a href="#"><i class="fa fa-pinterest-p"></i></a>
-            </div>
               <%if client_signed_in? %>
                 <%if @client.preference=="es" %>
                   <div class="header__top__right__language">
@@ -124,6 +120,7 @@
             <%if admin_signed_in? %>
               <li data-turbolinks="false"><a href="/products"><%= t :mod_prod%></a></li>
               <li data-turbolinks="false"><a href="/categories"><%= t :mod_cat%></a></li>
+              <li data-turbolinks="false"><a href="/categories/new"><%= t :afegir_cat%></a></li>
               <li data-turbolinks="false"><a href="/products/new"><%= t :afegir_productes%></a></li>
             <%else%>
               <li data-turbolinks="false"><a href="/products"><%= t :Productes%></a></li>
