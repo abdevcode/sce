@@ -1,16 +1,25 @@
-<div class="category"style="margin-left:20px; margin-top:20px;">
-  <%= form_for(@category, method: "put") do |f| %>
-    <div class="field">
-      <p> <%= f.label t("nom") %></p>
-      <%= f.text_field :name %>
+<section class="checkout spad">
+  <div class="container">
+    <div class="checkout__form">
+      <h4><%= t :mod_cat_uniq %></h4>
+      <%= form_for(@category, method: "put") do |f| %>
+        <div class="col-lg-6">
+          <div class="checkout__input">
+            <%= f.label t("nom") %>
+            <br/><%= f.text_field :name %>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="checkout__input">
+            <%= f.label t("Productes") %>
+            <br/>
+            <%= f.collection_select :product_ids, @products, :id, :name, {:prompt => true}, {:multiple => true} %>
+          </div>
+        </div>
+        <div class="btn btn-lg">
+          <%= f.submit t("crear") %>
+        </div>
+      <% end %>
     </div>
-    <div class="field">
-      <%= f.label t("Productes") %>
-      <br />
-      <%= f.collection_select :product_ids, @products, :id, :name, {:prompt => true}, {:multiple => true} %>
-    </div>
-    <div class="actions">
-      <%= f.submit t("crear") %>
-    </div>
-  <% end %>
-</div>
+  </div>
+</section>

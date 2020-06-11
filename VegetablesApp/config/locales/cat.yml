@@ -46,4 +46,9 @@ cat:
   dir_empresa: "Ens podeu trobar a Riudoms, carrer fals 1234"
   dir_phone: "Tel: 600 000 000"
   dir_email: "vegetables_riudoms@ecofriendly.com"
+  Perfil_client: "Perfil del client"
+  Perfil_cate: "Categories"
+  mod_prod_uniq: "Modificar producte"
+  image: "Link de la imatge"
+  welcome: "Benvingut"
 

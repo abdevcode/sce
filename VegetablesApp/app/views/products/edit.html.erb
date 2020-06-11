@@ -1,32 +1,55 @@
-<div class="product"style="margin-left:20px; margin-top:20px;">
-  <%= form_for(@product, method: "put") do |f| %>
-    <div class="field">
-      <p> <%= f.label t("nom") %></p>
-      <%= f.text_field :name %>
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+  <div class="container">
+    <div class="checkout__form">
+      <h4><%= t :mod_prod_uniq %></h4>
+      <%= form_for(@product, method: "put") do |f| %>
+        <div class="row">
+          <div class="col-lg-8 col-md-6">
+            <div class="col-lg-6">
+              <div class="checkout__input">
+                <%= f.label t("nom") %>
+                <%= f.text_field :name %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="checkout__input">
+                <%= f.label t("image") %>
+                <%= f.text_field :image %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="checkout__input">
+                <%= f.label t("preu") %>
+                <br><%= f.text_field :price %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="checkout__input">
+                <%= f.label :stock %>
+                <br><%= f.text_field :stock %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="checkout__input">
+                <%= f.label t("description")%>
+                <br><%= f.text_area :description %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="checkout__input">
+                <%= f.label t("cat") %>
+                <br />
+                <%= f.collection_select :category_ids, @categories, :id, :name, {:prompt => true}, {:multiple => true} %>
+              </div>
+            </div>
+            <div class="btn btn-lg">
+              <%= f.submit t("actualizar") %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div class="field">
-      <p><%= f.label :image %></p>
-      <%= f.text_field :image %>
-    </div>
-    <div class="field">
-      <%= f.label t("preu") %>
-      <br><%= f.text_field :price %>
-    </div>
-    <div class="field">
-      <%= f.label :stock %>
-      <br><%= f.text_field :stock %>
-    </div>
-    <div class="field">
-      <%= f.label t("description")%>
-      <br><%= f.text_area :description %>
-    </div>
-    <div class="field">
-      <%= f.label t("cat") %>
-      <br />
-      <%= f.collection_select :category_ids, @categories, :id, :name, {:prompt => true}, {:multiple => true} %>
-    </div>
-    <div class="actions">
-      <%= f.submit t("actualizar") %>
-    </div>
-  <% end %>
-</div>
+  </div>
+</section>
+<!-- Checkout Section End -->
