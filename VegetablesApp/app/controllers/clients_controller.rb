@@ -23,6 +23,8 @@ class ClientsController < ApplicationController
 
   def update
     @client = Client.find(params[:id])
+    @client.preference = params[:exp]
+
     if @client.update_attributes(client_params)
       sign_in(@client, :bypass=>true)
       redirect_to '/clients'
@@ -33,6 +35,8 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
+    @client.preference = params[:exp]
+
     if @client.save
       sign_in(@client, :bypass=>true)
       redirect_to '/clients'

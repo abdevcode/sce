@@ -37,6 +37,9 @@
       <%= f.label :password%>
       <br><%= f.password_field :password %>
     </div>
+    <div class="field">
+      Cat: <%= radio_button_tag 'exp', "cat" %>Es: <%= radio_button_tag 'exp', "es" %>
+    </div>
     <div class="actions">
       <%= f.submit "Create" %>
     </div>
